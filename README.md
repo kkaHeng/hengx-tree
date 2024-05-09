@@ -1,37 +1,119 @@
 # hengx-tree
 
-#### 介绍
+## 别的语言
+[English](README_en.md)
+[粵語](README_zh-yue.md)
+
+## 介绍
 这是一个简单的树形结构库，包含了基于RecyclerView实现的树形列表
 
-#### 软件架构
-软件架构说明
+## 软件架构
+我不知道，别问我
 
 
-#### 安装教程
+## 安装教程
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1. 自己编译
+2. 找别人编译
+3. 在线下载依赖：[123云盘](https://www.123pan.com/s/RmAZVv-Yu4pH.html)
 
 #### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1. 添加树形列表框
+- XML
+```xml
+<com.hengx.tree.widget.TreeView
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:id="@+id/tree_view" />
+
+```
+
+- Java
+```java
+TreeView treeView = new TreeView(context);
+treeView.setOnNodeClickListener(new OnNodeClickListener() {
+    @Override
+    public void onClick(TreeNode node) {
+        //其中一个节点被单击
+    }
+});
+```
+
+
+2.  构建树形结构
+- 基本
+```java
+TreeNode root = new TreeNode();
+root.setTitle("根节点");
+root.setDescription("这是一个根节点");
+treeView.add(root);
+treeView.update(); //大部分操作都要更新列表
+```
+
+- 进阶
+```java
+private TreeView view;
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    view = findViewById(R.id.view);
+    createNodes(null);
+    view.update();
+}
+public void createNodes(TreeNode parent) {
+    int level = parent == null ? 0 : parent.getLevel() + 1;
+	for (int i = 0; i < 10; i++) {
+        TreeNode root = new TreeNode();
+        root.setTitle((level + 1) + "级节点" + (i + 1));
+        root.setDescription("This is a node");
+        if (i < 5) {
+            root.setExpandable(true);
+            root.setOnNodeClickListener(node -> {
+                //实现无限创建节点
+                if (!node.isExpand() && node.length() == 0) {
+                    createNodes(node);
+                }
+                node.setExpand(!node.isExpand());
+                view.updateExpand(node);
+            });
+            root.setOnNodeExpandListener(node -> {
+                //实现无限创建节点
+                if (!node.isExpand() && node.length() == 0) {
+                    createNodes(node);
+                    node.setExpand(!node.isExpand());
+                    view.updateExpand(node);
+                    return true;
+                }
+                return false;
+            });
+        } else {
+            root.setOnNodeClickListener(node -> {
+                Toast.makeText(this, node.getTitle(), 0).show();
+            });
+        }
+        if (parent != null) {
+            parent.add(root);
+        } else {
+            view.add(root);
+        }
+    }
+}
+```
+
 
 #### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+1. 阿恒
 
 
-#### 特技
+#### 文档
+- [基本文档](基本文档.md)
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+
+#### 联系开发者
+
+1. 有问题？加群讨论：[236641851](https://qm.qq.com/q/1W5qXVqQUU)
+2. 不方便加群？加开发者QQ：[3322977037](https://qm.qq.com/q/p1Utp8KkWQ)
+3. 我不是中国用户，我不知道怎么使用QQ，可以联系我的邮箱：`mc_hengxing@163.com`
