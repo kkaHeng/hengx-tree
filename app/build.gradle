@@ -1,0 +1,67 @@
+
+plugins {
+    id 'com.android.application'
+    
+}
+
+android {
+    namespace 'com.hengx.tree.app'
+    compileSdk 33
+    
+    defaultConfig {
+        applicationId "com.hengx.tree.app"
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+        
+        vectorDrawables { 
+            useSupportLibrary true
+        }
+    }
+    
+    signingConfigs {
+        release {
+            storeFile file("../keys/hx.jks")
+            storePassword "MC3322977037"
+            keyAlias "hx"
+            keyPassword "MC3322977037"
+        }
+        debug {
+            storeFile file("../keys/hx.jks")
+            storePassword "MC3322977037"
+            keyAlias "hx"
+            keyPassword "MC3322977037"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    buildFeatures {
+        viewBinding true
+        
+    }
+    
+}
+
+dependencies {
+
+
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.9.0")
+    implementation project(':tree')
+}
