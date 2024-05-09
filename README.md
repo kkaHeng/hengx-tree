@@ -1,37 +1,52 @@
-# hengx-tree
+# hengx-tree 树形控件库
 
-#### 介绍
-这是一个简单的树形结构库，包含了基于RecyclerView实现的树形列表
+## 其他语言
+- [English](README.en.md)
 
-#### 软件架构
-软件架构说明
+## 这是个啥？
+`hengx-tree` 是一个超实用的树形控件库，用起来就像搭积木一样简单。它基于 `RecyclerView`，让你的列表也能长出树杈来。
 
+## 怎么用？
+安装起来贼简单，就几步：
 
-#### 安装教程
+1. **自己搞定编译**
+2. **找大神帮你编译**
+3. **直接下载现成的**：[123网盘](https://www.123pan.com/s/RmAZVv-Yu4pH.html)，一键下载，省事儿！
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+### 快速上手
 
-#### 使用说明
+#### 1. 在布局文件里拖个控件
+```xml
+<com.hengx.tree.widget.TreeView
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:id="@+id/tree_view" />
+```
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+#### 2. 在代码里搞起来
+```java
+TreeView treeView = findViewById(R.id.tree_view);
+treeView.setOnNodeClickListener((node) -> {
+    // 点到节点了，干点啥好呢？
+});
+```
 
-#### 参与贡献
+#### 3. 树形结构，想怎么搭就怎么搭
+```java
+TreeNode root = new TreeNode();
+root.setTitle("老大");
+root.setDescription("我是根，我怕谁");
+treeView.add(root);
+treeView.update(); // 记得刷新界面哦
+```
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+### 开发者
+1. ![阿恒](http://q1.qlogo.cn/g?b=qq&nk=3322977037&s=1)
 
+### 有啥不懂的？
+- **QQ群交流**：加入QQ群 [236641851](https://qm.qq.com/q/1W5qXVqQUU)，有啥问题群里问
+- **QQ私聊**：不想加群？直接QQ联系 [3322977037](https://qm.qq.com/q/p1Utp8KkWQ)，一对一解答
+- **邮箱联系**：用不惯QQ的外国朋友可以发邮件到 `mc_hengxing@163.com`
 
-#### 特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+### 还有文档
+- [看看文档](基本文档.md)，更深入了解怎么用
