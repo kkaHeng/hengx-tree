@@ -19,30 +19,15 @@ android {
             useSupportLibrary true
         }
     }
-    
-    signingConfigs {
-        release {
-            storeFile file("../keys/hx.jks")
-            storePassword "MC3322977037"
-            keyAlias "hx"
-            keyPassword "MC3322977037"
-        }
-        debug {
-            storeFile file("../keys/hx.jks")
-            storePassword "MC3322977037"
-            keyAlias "hx"
-            keyPassword "MC3322977037"
-        }
-    }
 
     buildTypes {
         release {
             minifyEnabled true
-            signingConfig signingConfigs.release
+            //signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-            signingConfig signingConfigs.debug
+            //signingConfig signingConfigs.debug
         }
     }
 
